@@ -8,7 +8,8 @@ COPY . /app
 WORKDIR /app
 
 # Installation des dépendances de l'application
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && \
+    pip install -r requirements.txt 2>&1 | tee pip_install.log
 
 # Exposition de port sur lequel l'application FastAPI écoute
 EXPOSE $PORT
